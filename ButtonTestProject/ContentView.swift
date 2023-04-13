@@ -12,26 +12,34 @@ struct ButtonTestView: View {
     @State var showCover = false
     
     var button: some View {
-        //        Button(action: {},
-        //               label: { Text("Options") })
+        Button(action: {},
+               label: {
+            Text("Options")
+                .tint(.white)
+                .foregroundColor(.white)
+                .font(.init(.headline))
+                .accentColor(.white)
+            
+        })
         
-        //                        .buttonStyle(.borderedProminent)
-        //        .buttonStyle(.borderless)
+//        .buttonStyle(.borderedProminent)
+        .buttonStyle(.borderless)
+        .tint(.white)
+        .accentColor(.white)
+//        .buttonBorderShape(.capsule)
+//        .foregroundColor(.green)
+//        .tint(.indigo)
         
-        //                        .buttonBorderShape(.capsule)
-        //                        .foregroundColor(.green)
-        //                        .tint(.indigo)
-        
-        Text("Options")
-            .padding(16)
-            .background(Color.cyan)
-            .foregroundColor(.white)
-            .cornerRadius(32)
-            .tint(.white)
+//        Text("Options")
+//            .padding(16)
+//            .background(Color.cyan)
+//            .foregroundColor(.white)
+//            .cornerRadius(32)
+//            .tint(.white)
     }
     
     var body: some View {
-        let menu = Menu {
+        Menu {
             Button(action: { }, label: { Text("Apple") })
             Button(action: { }, label: { Text("Banana") })
         } label: {
@@ -39,18 +47,31 @@ struct ButtonTestView: View {
             // we can no longer control the color of the text or arrow.
             button
                 .tint(.white)
+                .foregroundColor(.white)
+                .accentColor(.white)
         }
+//        .labelStyle(.titleOnly)
+//        .labelStyle(.iconOnly)
+//        .labelStyle(.titleAndIcon)
+        
+        
+        
         //        .menuStyle(.button)
             .menuStyle(.borderlessButton)
         //        .menuStyle(.automatic)
+        
+//            .menuIndicator(.hidden)
         
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .circular)
                     .fill(.green)
                     .padding()
                     .frame(width: 100, height: 60)
+                    
             }
             .foregroundColor(.white)
+            .tint(.white)
+            .accentColor(.white)
     }
 }
 
