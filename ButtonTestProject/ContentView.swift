@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+let STITCH_PURPLE = Color(uiColor: UIColor(red: 0.639, green: 0.537, blue: 0.929, alpha: 1))
+let APP_BACKGROUND_COLOR = Color(uiColor: UIColor(red: 0.122, green: 0.129, blue: 0.157, alpha: 1))
+
 struct ButtonTestView: View {
     
     @State var showCover = false
@@ -64,7 +67,8 @@ struct ButtonTestView: View {
         
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .circular)
-                    .fill(.green)
+//                    .fill(.green)
+                    .fill(STITCH_PURPLE)
                     .padding()
                     .frame(width: 100, height: 60)
                     
@@ -77,7 +81,13 @@ struct ButtonTestView: View {
 
 struct ContentView: View {
     var body: some View {
-        ButtonTestView()
+        
+        ZStack {
+            APP_BACKGROUND_COLOR.edgesIgnoringSafeArea(.all)
+            ButtonTestView()
+        }
+        
+
     }
 }
 
