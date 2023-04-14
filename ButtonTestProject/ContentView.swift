@@ -16,29 +16,8 @@ struct ButtonTestView: View {
     
     var button: some View {
         Button(action: {},
-               label: {
-            Text("Options")
-                .tint(.white)
-                .foregroundColor(.white)
-                .font(.init(.headline))
-                .accentColor(.white)
-            
-        })
-        
-//        .buttonStyle(.borderedProminent)
+               label: { Text("Options") })
         .buttonStyle(.borderless)
-        .tint(.white)
-        .accentColor(.white)
-//        .buttonBorderShape(.capsule)
-//        .foregroundColor(.green)
-//        .tint(.indigo)
-        
-//        Text("Options")
-//            .padding(16)
-//            .background(Color.cyan)
-//            .foregroundColor(.white)
-//            .cornerRadius(32)
-//            .tint(.white)
     }
     
     var body: some View {
@@ -53,39 +32,42 @@ struct ButtonTestView: View {
                 .foregroundColor(.white)
                 .accentColor(.white)
         }
-//        .labelStyle(.titleOnly)
-//        .labelStyle(.iconOnly)
-//        .labelStyle(.titleAndIcon)
-        
-        
-        
-        //        .menuStyle(.button)
-            .menuStyle(.borderlessButton)
-        //        .menuStyle(.automatic)
-        
-//            .menuIndicator(.hidden)
-        
-            .background {
-                RoundedRectangle(cornerRadius: 16, style: .circular)
-//                    .fill(.green)
-                    .fill(STITCH_PURPLE)
-                    .padding()
-                    .frame(width: 100, height: 60)
-                    
-            }
-            .foregroundColor(.white)
-            .tint(.white)
-            .accentColor(.white)
+        .menuStyle(.borderlessButton)
+
+        .background {
+            RoundedRectangle(cornerRadius: 16, style: .circular)
+                .fill(STITCH_PURPLE)
+                .padding()
+                .frame(width: 112, height: 60)
+        }
+        .tint(.black)
     }
 }
 
 struct ContentView: View {
     var body: some View {
         
-        ZStack {
-            APP_BACKGROUND_COLOR.edgesIgnoringSafeArea(.all)
-            ButtonTestView()
+//        NavigationSplitView(columnVisibility: .constant(.detailOnly)) {
+        NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
+            Text("Sidebar")
+//                .navigationSplitViewColumnWidth(5)
+                .navigationSplitViewColumnWidth(0)
+        } detail: {
+            NavigationStack {
+                Text("Detail")
+            }
+            .navigationSplitViewColumnWidth(200)
         }
+        .navigationSplitViewStyle(.prominentDetail)
+        .navigationViewStyle(.stack)
+        
+        
+
+//
+//        ZStack {
+//            APP_BACKGROUND_COLOR.edgesIgnoringSafeArea(.all)
+//            ButtonTestView()
+//        }
         
 
     }
