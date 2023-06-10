@@ -62,63 +62,67 @@ struct ButtonTestView: View {
 
 struct ContentView: View {
     
+    @State var column: NavigationSplitViewVisibility = .detailOnly
+    
     var body: some View {
         
-        ZStack {
-            APP_BACKGROUND_COLOR.edgesIgnoringSafeArea(.all)
-            ButtonTestView()
-        }
         
-        
-////        NavigationSplitView(columnVisibility: .constant(.detailOnly)) {
-//        NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
-//            Text("Sidebar")
-////                .navigationSplitViewColumnWidth(5)
+        NavigationSplitView(columnVisibility: $column) {
+            Text("Sidebar")
+//                .navigationSplitViewColumnWidth(5)
 //                .navigationSplitViewColumnWidth(0)
-//        } detail: {
-//            NavigationStack {
+        } detail: {
+            NavigationStack {
 //                Text("Detail")
-//            }
-//            .navigationSplitViewColumnWidth(200)
-//        }
-//        .navigationSplitViewStyle(.prominentDetail)
-//        .navigationViewStyle(.stack)
-        
-//        NavigationStack {
-////            Text("Detail")
-//            List {
-//                NavigationLink {
-//                    Text("Detail 1")
-//                } label: {
-//                    Text("Go to Detail 1")
-//                }
-//                NavigationLink {
-//                    Text("Detail 2")
-//                } label: {
-//                    Text("Go to Detail 2")
-//                }
-//                NavigationLink {
-//                    Text("Detail 3")
-//                } label: {
-//                    Text("Go to Detail 3")
-//                }
-//
-//            }
-//            .toolbar {
-////                ToolbarItem(placement: .secondaryAction) {
-////                    Button(action: { },
-////                           label: { Text("Secondary") })
-////                }
-//
-//                ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                    Button(action: { },
-//                           label: { Text("Love") })
-//                }
-//            }
-//        }
-        
+                List {
+                    NavigationLink {
+                        Text("Detail 1")
+                    } label: {
+                        Text("Go to Detail 1")
+                    }
+                    NavigationLink {
+                        Text("Detail 2")
+                    } label: {
+                        Text("Go to Detail 2")
+                    }
+                    NavigationLink {
+                        Text("Detail 3")
+                            .toolbar {
+                                ToolbarItemGroup(placement: .navigationBarLeading) {
+                                    Menu {
+                                        Button(action: { },
+                                               label: { Text("World Peace") })
+                                        Button(action: { },
+                                               label: { Text("International Peace") })
+                                    } label: {
+                                        Button(action: { },
+                                               label: { Text("Peace") })
+                                    }
+                                }
+                            }
+                            .toolbarRole(.editor)
+                    } label: {
+                        Text("Go to Detail 3")
+                    }
 
-        
+                } // List
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button(action: { },
+                               label: { Text("Joy") })
+                    }
+                    
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button(action: { },
+                               label: { Text("Love") })
+                    }
+                } // .toolbar
+            }
+            .navigationSplitViewColumnWidth(200)
+        }
+//        .navigationBarBackButtonHidden()
+        .navigationSplitViewStyle(.prominentDetail)
+        .navigationViewStyle(.stack)
 
     }
 }
